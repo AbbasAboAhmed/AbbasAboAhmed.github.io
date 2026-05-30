@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Abbas Ahmed — Data Analytics Engineer. ETL pipelines, Azure, Databricks, Power BI. Cairo, Egypt."/>
+  <title>Abbas Ahmed | Data Analytics Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── THEME VARIABLES ── */
+    [data-theme="light"] {
+      --bg:        #f0ece6;
+      --bg2:       #e8e4de;
+      --surface:   #ffffff;
+      --surface2:  #f7f5f2;
+      --blue:      #2563eb;
+      --blue-dk:   #1d4ed8;
+      --blue-lt:   #eff6ff;
+      --blue-md:   #bfdbfe;
+      --text:      #0f172a;
+      --text2:     #334155;
+      --muted:     #64748b;
+      --muted2:    #94a3b8;
+      --border:    #e2e8f0;
+      --border2:   #cbd5e1;
+      --shadow:    0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.08);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.1);
+      --nav-bg:    rgba(255,255,255,.88);
+      --ring1:     #bfdbfe;
+      --ring2:     #dbeafe;
+    }
+    [data-theme="dark"] {
+      --bg:        #0a0f1e;
+      --bg2:       #0d1528;
+      --surface:   #111c33;
+      --surface2:  #0f1a2e;
+      --blue:      #3b82f6;
+      --blue-dk:   #2563eb;
+      --blue-lt:   rgba(59,130,246,.1);
+      --blue-md:   rgba(59,130,246,.25);
+      --text:      #f1f5f9;
+      --text2:     #cbd5e1;
+      --muted:     #94a3b8;
+      --muted2:    #64748b;
+      --border:    #1e3a5f;
+      --border2:   #243656;
+      --shadow:    0 1px 3px rgba(0,0,0,.3);
+      --shadow-md: 0 4px 20px rgba(0,0,0,.4);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.5);
+      --nav-bg:    rgba(10,15,30,.9);
+      --ring1:     rgba(59,130,246,.3);
+      --ring2:     rgba(59,130,246,.15);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+      background:var(--bg);color:var(--text);
+      line-height:1.7;overflow-x:hidden;
+      transition:background .3s,color .3s;
+    }
+
+    /* Grid pattern */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:
+        linear-gradient(var(--border) 1px,transparent 1px),
+        linear-gradient(90deg,var(--border) 1px,transparent 1px);
+      background-size:48px 48px;
+      opacity:.4;pointer-events:none;z-index:0;
+    }
+    body>*{position:relative;z-index:1;}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;width:100%;z-index:500;
+      background:var(--nav-bg);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      display:flex;justify-content:space-between;align-items:center;
+      padding:.85rem 3rem;box-shadow:var(--shadow);
+      transition:background .3s,border-color .3s;
+    }
+    .nav-logo{
+      display:flex;align-items:center;gap:.5rem;
+      font-size:1rem;font-weight:800;color:var(--text);
+      text-decoration:none;
+    }
+    .nav-logo-icon{
+      width:30px;height:30px;background:var(--blue);
+      border-radius:7px;
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:.85rem;font-weight:900;
+    }
+    .nav-links{display:flex;gap:1.8rem;list-style:none;}
+    .nav-links a{
+      color:var(--muted);text-decoration:none;
+      font-size:.85rem;font-weight:500;transition:color .2s;
+    }
+    .nav-links a:hover{color:var(--blue);}
+    .nav-right{display:flex;align-items:center;gap:.8rem;}
+    .theme-btn{
+      width:36px;height:36px;border-radius:50%;
+      background:var(--surface);border:1px solid var(--border);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      font-size:1rem;transition:all .2s;box-shadow:var(--shadow);
+    }
+    .theme-btn:hover{border-color:var(--blue);}
+    .hire-btn{
+      background:var(--blue);color:#fff;
+      padding:.48rem 1.3rem;border-radius:999px;
+      font-size:.85rem;font-weight:700;text-decoration:none;
+      transition:background .2s,transform .2s;
+      box-shadow:0 2px 8px rgba(37,99,235,.35);
+    }
+    .hire-btn:hover{background:var(--blue-dk);transform:translateY(-1px);}
+
+    /* ── LAYOUT ── */
+    .wrap{max-width:1100px;margin:0 auto;padding:6rem 2rem;}
+    .sec-label{
+      font-size:.72rem;color:var(--blue);
+      letter-spacing:2px;text-transform:uppercase;font-weight:700;
+      margin-bottom:.5rem;
+    }
+    .sec-title{font-size:1.9rem;font-weight:800;color:var(--text);line-height:1.2;}
+    .sec-title span{color:var(--blue);}
+    .sec-head{margin-bottom:3rem;}
+
+    /* ── HERO ── */
+    #hero-wrap{
+      min-height:100vh;
+      display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;gap:5rem;
+      max-width:1200px;margin:0 auto;
+      padding:8rem 3rem 5rem;
+    }
+    .avail-badge{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:var(--blue-lt);color:var(--blue);
+      border:1px solid var(--blue-md);
+      padding:.32rem .95rem;border-radius:999px;
+      font-size:.72rem;font-weight:700;letter-spacing:.8px;
+      text-transform:uppercase;margin-bottom:1.6rem;
+    }
+    .avail-dot{
+      width:7px;height:7px;background:var(--blue);
+      border-radius:50%;animation:blink 2s infinite;
+    }
+    @keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(1.5);}}
+    #hero-wrap h1{
+      font-size:clamp(2.2rem,3.8vw,3.5rem);
+      font-weight:800;color:var(--text);line-height:1.1;
+      margin-bottom:.8rem;
+    }
+    .hero-role{
+      font-size:1rem;color:var(--blue);font-weight:700;
+      margin-bottom:.8rem;letter-spacing:.3px;
+    }
+    .hero-sub{
+      font-size:1rem;color:var(--muted);
+      max-width:440px;margin-bottom:2rem;line-height:1.8;
+    }
+    .hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:3.5rem;}
+    .btn{
+      padding:.68rem 1.5rem;border-radius:999px;
+      font-size:.88rem;font-weight:700;text-decoration:none;
+      transition:all .2s;cursor:pointer;border:none;display:inline-block;
+    }
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 10px rgba(37,99,235,.3);}
+    .btn-primary:hover{background:var(--blue-dk);transform:translateY(-2px);}
+    .btn-ghost{
+      background:var(--surface);color:var(--text2);
+      border:1.5px solid var(--border2);box-shadow:var(--shadow);
+    }
+    .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+    .hero-stats{display:flex;gap:2.5rem;}
+    .stat-n{font-size:2.1rem;font-weight:800;color:var(--text);line-height:1;}
+    .stat-l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-top:.25rem;}
+
+    /* Photo */
+    .hero-photo-wrap{display:flex;justify-content:center;align-items:center;}
+    .photo-area{position:relative;width:310px;height:310px;}
+    /* Animated rings */
+    .ring{
+      position:absolute;border-radius:50%;
+      animation:pulse-ring 3s ease-in-out infinite;
+    }
+    .ring-1{
+      inset:-16px;
+      border:2px solid var(--ring1);
+      animation-delay:0s;
+    }
+    .ring-2{
+      inset:-30px;
+      border:1.5px solid var(--ring2);
+      animation-delay:.8s;
+    }
+    .ring-3{
+      inset:-46px;
+      border:1px solid var(--ring2);
+      animation-delay:1.6s;
+    }
+    @keyframes pulse-ring{
+      0%,100%{opacity:.8;transform:scale(1);}
+      50%{opacity:.3;transform:scale(1.02);}
+    }
+    .photo-circle{
+      position:absolute;inset:0;border-radius:50%;
+      background:var(--blue-lt);
+      border:3px solid var(--blue-md);
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;box-shadow:var(--shadow-lg);
+    }
+    .photo-circle img{width:100%;height:100%;object-fit:cover;}
+    .photo-placeholder{font-size:7rem;line-height:1;user-select:none;}
+    /* floating chips */
+    .chip{
+      position:absolute;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:12px;padding:.55rem 1rem;
+      font-size:.75rem;font-weight:600;color:var(--text2);
+      box-shadow:var(--shadow-md);
+      display:flex;align-items:center;gap:.4rem;white-space:nowrap;
+      animation:float 4s ease-in-out infinite;
+    }
+    .chip-tl{top:-10px;left:-50px;animation-delay:0s;}
+    .chip-br{bottom:10px;right:-40px;animation-delay:1.5s;}
+    .chip-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+    /* ── SECTION BACKGROUNDS ── */
+    .bg-surface{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .bg-default{background:var(--bg);}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start;}
+    .about-text p{color:var(--muted);margin-bottom:1rem;font-size:.93rem;}
+    .about-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem;}
+    .a-chip{
+      background:var(--blue-lt);color:var(--blue);
+      border:1px solid var(--blue-md);
+      padding:.28rem .85rem;border-radius:999px;
+      font-size:.75rem;font-weight:700;
+    }
+    /* accordion */
+    .accord{}
+    .accord-item{border-bottom:1px solid var(--border);cursor:pointer;}
+    .accord-head{
+      display:grid;grid-template-columns:auto 1fr auto;
+      gap:1rem;align-items:start;padding:1rem 0;
+    }
+    .accord-date{
+      font-size:.68rem;color:var(--muted2);
+      letter-spacing:.5px;text-transform:uppercase;white-space:nowrap;
+      margin-top:.18rem;
+    }
+    .accord-role{font-size:.9rem;font-weight:700;color:var(--text);}
+    .accord-co{font-size:.8rem;color:var(--blue);font-weight:600;margin-top:.1rem;}
+    .accord-arrow{color:var(--muted2);font-size:.7rem;margin-top:.2rem;transition:transform .2s;}
+    .accord-item.open .accord-arrow{transform:rotate(180deg);}
+    .accord-body{
+      display:none;padding:.2rem 0 1rem;
+      font-size:.83rem;color:var(--muted);line-height:1.7;
+    }
+    .accord-item.open .accord-body{display:block;}
+
+    /* ── SERVICES ── */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+    .svc-card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;padding:1.8rem;
+      box-shadow:var(--shadow);
+      transition:transform .25s,box-shadow .25s,border-color .25s;
+    }
+    .svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--blue-md);}
+    .svc-ico{
+      width:42px;height:42px;border-radius:10px;
+      background:var(--blue-lt);color:var(--blue);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1.1rem;margin-bottom:1.1rem;
+    }
+    .svc-card h3{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:.5rem;}
+    .svc-card p{font-size:.83rem;color:var(--muted);line-height:1.65;}
+
+    /* ── SKILLS ── */
+    .skills-wrap{display:flex;flex-direction:column;gap:2.2rem;}
+    .skill-row-label{
+      font-size:.7rem;font-weight:700;color:var(--muted);
+      text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.7rem;
+    }
+    .skill-pills{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .pill{
+      background:var(--surface);
+      border:1.5px solid var(--border2);
+      color:var(--text2);
+      padding:.35rem .95rem;border-radius:999px;
+      font-size:.82rem;font-weight:500;
+      box-shadow:var(--shadow);
+      transition:all .2s;cursor:default;
+    }
+    .pill:hover,.pill.hi{
+      border-color:var(--blue);color:var(--blue);
+      background:var(--blue-lt);
+    }
+
+    /* ── PROJECTS bento ── */
+    .bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:1.2rem;}
+    .bento-big{grid-column:1;grid-row:1/3;}
+    .proj-card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
+      transition:transform .25s,box-shadow .25s,border-color .25s;
+      display:flex;flex-direction:column;
+    }
+    .proj-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--blue-md);}
+    .proj-thumb{
+      display:flex;align-items:center;justify-content:center;font-size:3rem;
+    }
+    .proj-thumb.big{height:220px;}
+    .proj-thumb.sm{height:120px;}
+    .t1{background:linear-gradient(135deg,#dbeafe,#eff6ff);}
+    .t2{background:linear-gradient(135deg,#e0e7ff,#f0f4ff);}
+    .t3{background:linear-gradient(135deg,#d1fae5,#ecfdf5);}
+    .proj-body{padding:1.3rem;flex:1;display:flex;flex-direction:column;}
+    .proj-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem;}
+    .ptag{
+      font-size:.68rem;font-weight:700;padding:.18rem .6rem;border-radius:999px;
+    }
+    .ptag-b{background:var(--blue-lt);color:var(--blue);}
+    .ptag-g{background:var(--surface2);color:var(--muted);}
+    .proj-body h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.4rem;}
+    .proj-body p{font-size:.8rem;color:var(--muted);margin-bottom:auto;padding-bottom:.9rem;line-height:1.6;}
+    .proj-link{
+      font-size:.8rem;color:var(--blue);text-decoration:none;
+      font-weight:700;display:inline-flex;align-items:center;gap:.25rem;
+    }
+    .proj-link:hover{color:var(--blue-dk);}
+
+    /* ── COURSES ── */
+    .courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .course-banner{
+      background:var(--blue);border-radius:16px;
+      padding:2rem;color:#fff;position:relative;overflow:hidden;
+      display:flex;flex-direction:column;gap:1rem;
+      box-shadow:0 4px 20px rgba(37,99,235,.3);
+      transition:transform .25s;
+    }
+    .course-banner:hover{transform:translateY(-4px);}
+    .course-banner::before{
+      content:'';position:absolute;top:-40px;right:-40px;
+      width:150px;height:150px;border-radius:50%;
+      background:rgba(255,255,255,.07);
+    }
+    .course-banner::after{
+      content:'';position:absolute;bottom:-30px;left:-20px;
+      width:100px;height:100px;border-radius:50%;
+      background:rgba(255,255,255,.05);
+    }
+    .cs-badge{
+      display:inline-flex;align-items:center;gap:.4rem;
+      background:rgba(255,255,255,.18);
+      padding:.25rem .8rem;border-radius:999px;
+      font-size:.7rem;font-weight:700;letter-spacing:.5px;
+      width:fit-content;
+    }
+    .course-banner h3{font-size:1.05rem;font-weight:800;position:relative;z-index:1;}
+    .course-banner p{font-size:.83rem;opacity:.85;line-height:1.6;position:relative;z-index:1;}
+    .course-banner-icon{font-size:2.2rem;position:relative;z-index:1;}
+    .course-actions{display:flex;gap:.6rem;flex-wrap:wrap;position:relative;z-index:1;}
+    .course-btn{
+      font-size:.78rem;font-weight:700;padding:.4rem 1rem;
+      border-radius:999px;text-decoration:none;transition:all .2s;
+      cursor:pointer;border:none;
+    }
+    .course-btn-white{background:#fff;color:var(--blue);}
+    .course-btn-white:hover{background:#f0f4ff;transform:translateY(-1px);}
+    .course-btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);}
+    .course-btn-outline:hover{background:rgba(255,255,255,.1);}
+
+    /* ── ROADMAP ── */
+    .roadmap-list{display:flex;flex-direction:column;gap:0;position:relative;padding-left:3.5rem;}
+    .roadmap-list::before{
+      content:'';position:absolute;left:1.05rem;top:1.2rem;bottom:1.2rem;
+      width:2px;background:var(--border2);border-radius:2px;
+    }
+    .road-item{
+      position:relative;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1rem;
+      box-shadow:var(--shadow);
+      transition:border-color .2s,transform .2s;
+    }
+    .road-item:hover{border-color:var(--blue);transform:translateX(4px);}
+    .road-num{
+      position:absolute;left:-3.5rem;top:50%;transform:translateY(-50%);
+      width:32px;height:32px;border-radius:50%;
+      background:var(--surface);border:2px solid var(--border2);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.8rem;font-weight:800;color:var(--muted);
+      transition:all .2s;
+    }
+    .road-item:hover .road-num{
+      border-color:var(--blue-md);color:var(--blue);
+    }
+    .road-item.active .road-num{
+      background:var(--blue);border-color:var(--blue);color:#fff;
+    }
+    .road-item.active{border-color:var(--blue);}
+    .road-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;}
+    .road-title{font-size:.9rem;font-weight:700;color:var(--text);}
+    .road-right{display:flex;align-items:center;gap:.6rem;}
+    .road-tag{
+      font-size:.7rem;font-weight:700;padding:.18rem .7rem;border-radius:999px;
+      background:var(--blue-lt);color:var(--blue);
+    }
+    .road-hrs{font-size:.72rem;color:var(--muted2);}
+    .road-desc{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.6;}
+    .road-link{
+      display:inline-flex;align-items:center;gap:.3rem;
+      font-size:.78rem;color:#ff0000;font-weight:700;
+      text-decoration:none;margin-top:.5rem;
+    }
+    .road-link:hover{opacity:.8;}
+
+    /* ── ARTICLES ── */
+    .articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+    .article-card{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:14px;padding:1.4rem;
+      box-shadow:var(--shadow);
+      transition:transform .25s,box-shadow .25s,border-color .25s;
+      display:flex;flex-direction:column;
+    }
+    .article-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--blue-md);}
+    .article-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem;}
+    .art-cat{
+      font-size:.68rem;font-weight:700;padding:.18rem .65rem;border-radius:999px;
+      background:var(--blue-lt);color:var(--blue);text-transform:uppercase;letter-spacing:.5px;
+    }
+    .art-src{font-size:.72rem;color:var(--muted2);}
+    .article-card h3{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.4;}
+    .article-card p{font-size:.8rem;color:var(--muted);line-height:1.6;flex:1;margin-bottom:.8rem;}
+    .art-foot{display:flex;justify-content:space-between;align-items:center;}
+    .art-date{font-size:.72rem;color:var(--muted2);}
+    .art-link{font-size:.78rem;color:var(--blue);text-decoration:none;font-weight:700;}
+    .art-link:hover{color:var(--blue-dk);}
+
+    /* ── SESSION ── */
+    .session-box{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:20px;padding:3.5rem;
+      display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+      align-items:center;box-shadow:var(--shadow-lg);
+    }
+    .session-left h2{font-size:1.6rem;font-weight:800;margin-bottom:.7rem;}
+    .session-left p{color:var(--muted);font-size:.9rem;margin-bottom:1.6rem;}
+    .session-perks{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.8rem;}
+    .session-perks li{display:flex;align-items:center;gap:.7rem;font-size:.86rem;color:var(--text2);}
+    .perk-ico{
+      width:20px;height:20px;border-radius:50%;
+      background:var(--blue-lt);color:var(--blue);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.6rem;font-weight:900;flex-shrink:0;
+    }
+    .session-opts{display:flex;flex-direction:column;gap:.7rem;}
+    .session-opt{
+      display:flex;align-items:center;gap:.9rem;
+      background:var(--bg);border:1.5px solid var(--border);
+      border-radius:12px;padding:.95rem 1.2rem;
+      text-decoration:none;color:var(--text);
+      transition:border-color .2s,transform .2s,background .2s;
+    }
+    .session-opt:hover{border-color:var(--blue);background:var(--blue-lt);transform:translateX(4px);}
+    .so-ico{
+      width:36px;height:36px;border-radius:8px;background:var(--blue-lt);
+      display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;
+    }
+    .so-title{font-size:.86rem;font-weight:700;color:var(--text);}
+    .so-sub{font-size:.75rem;color:var(--muted);}
+    .so-arrow{margin-left:auto;color:var(--blue);font-weight:700;font-size:.9rem;}
+
+    /* ── EDUCATION ── */
+    .edu-cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+    .edu-col-label{
+      font-size:.72rem;font-weight:700;color:var(--blue);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;
+    }
+    .edu-card{
+      background:var(--surface2);border:1px solid var(--border);
+      border-radius:10px;padding:1.1rem 1.3rem;margin-bottom:.8rem;
+      display:flex;gap:.8rem;align-items:flex-start;
+    }
+    .edu-ico{
+      width:32px;height:32px;border-radius:7px;
+      background:var(--blue-lt);
+      display:flex;align-items:center;justify-content:center;
+      font-size:.85rem;flex-shrink:0;
+    }
+    .edu-card h4{font-size:.88rem;font-weight:700;color:var(--text);}
+    .edu-card .edu-where{font-size:.78rem;color:var(--blue);font-weight:600;margin-top:.1rem;}
+    .edu-card .edu-date{font-size:.72rem;color:var(--muted2);margin-top:.1rem;}
+    /* cert interactive */
+    .edu-card{cursor:pointer;}
+    .edu-card:hover{border-color:var(--blue-md);}
+    .edu-card.active-cert{border-color:var(--blue);background:var(--blue-lt);}
+    .edu-card.active-cert .edu-ico{background:var(--blue);color:#fff;}
+    .edu-card.active-cert h4{color:var(--blue);}
+
+    /* ── CONTACT ── */
+    .contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:start;}
+    .contact-left h2{font-size:1.5rem;font-weight:800;margin-bottom:.6rem;}
+    .contact-left>p{color:var(--muted);font-size:.88rem;margin-bottom:1.8rem;line-height:1.7;}
+    .contact-links{display:flex;flex-direction:column;gap:.6rem;}
+    .c-link{
+      display:flex;align-items:center;gap:.9rem;text-decoration:none;
+      background:var(--surface);border:1.5px solid var(--border);
+      border-radius:10px;padding:.85rem 1.1rem;box-shadow:var(--shadow);
+      transition:border-color .2s,transform .2s;
+    }
+    .c-link:hover,.c-link.active{border-color:var(--blue);transform:translateX(4px);}
+    .c-link.active .cl-ico{background:var(--blue);color:#fff;}
+    .cl-ico{
+      width:34px;height:34px;border-radius:7px;background:var(--blue-lt);
+      display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;
+      transition:background .2s,color .2s;
+    }
+    .cl-label{font-size:.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;}
+    .cl-value{font-size:.85rem;color:var(--text);font-weight:600;}
+    /* form */
+    .c-form{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;padding:2rem;box-shadow:var(--shadow);
+    }
+    .c-form h3{font-size:.95rem;font-weight:700;margin-bottom:1.4rem;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+    .fg{margin-bottom:.85rem;}
+    .fg label{display:block;font-size:.75rem;color:var(--muted);font-weight:600;margin-bottom:.35rem;}
+    .fg input,.fg select,.fg textarea{
+      width:100%;padding:.68rem .9rem;
+      background:var(--bg);border:1.5px solid var(--border2);
+      border-radius:8px;color:var(--text);font-size:.85rem;
+      outline:none;transition:border-color .2s,background .2s;font-family:inherit;
+    }
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue);background:var(--surface);}
+    .fg textarea{resize:vertical;}
+    .fg select option{background:var(--surface);}
+    .send-btn{
+      width:100%;padding:.78rem;
+      background:var(--blue);color:#fff;border:none;
+      border-radius:999px;font-size:.9rem;font-weight:700;
+      cursor:pointer;transition:background .2s,transform .2s;
+      box-shadow:0 2px 10px rgba(37,99,235,.3);
+      display:flex;align-items:center;justify-content:center;gap:.4rem;
+    }
+    .send-btn:hover{background:var(--blue-dk);transform:translateY(-1px);}
+    .form-ok{display:none;text-align:center;padding:2rem;color:var(--blue);font-weight:700;}
+
+    /* ── SEARCH ── */
+    .search-overlay{
+      display:none;position:fixed;inset:0;z-index:1000;
+      background:rgba(0,0,0,.5);backdrop-filter:blur(4px);
+      align-items:flex-start;justify-content:center;padding-top:5rem;
+    }
+    .search-overlay.active{display:flex;}
+    .search-box{
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:16px;width:min(600px,90vw);
+      box-shadow:var(--shadow-lg);overflow:hidden;
+    }
+    .search-input-wrap{
+      display:flex;align-items:center;gap:.8rem;
+      padding:1rem 1.2rem;border-bottom:1px solid var(--border);
+    }
+    .search-input-wrap i{color:var(--muted);font-size:1rem;}
+    .search-input{
+      flex:1;border:none;outline:none;
+      background:transparent;color:var(--text);font-size:1rem;
+      font-family:inherit;
+    }
+    .search-close{
+      background:none;border:none;cursor:pointer;
+      color:var(--muted);font-size:1.1rem;padding:.2rem;
+    }
+    .search-results{max-height:350px;overflow-y:auto;padding:.5rem 0;}
+    .search-result-item{
+      padding:.75rem 1.2rem;cursor:pointer;
+      transition:background .15s;
+      display:flex;align-items:center;gap:.8rem;
+    }
+    .search-result-item:hover{background:var(--blue-lt);}
+    .search-result-item i{color:var(--blue);width:16px;font-size:.85rem;}
+    .sr-title{font-size:.88rem;font-weight:600;color:var(--text);}
+    .sr-sub{font-size:.75rem;color:var(--muted);}
+    .search-empty{padding:2rem;text-align:center;color:var(--muted);font-size:.88rem;}
+    .search-btn{
+      background:none;border:none;cursor:pointer;
+      color:var(--muted);font-size:1rem;padding:.4rem;
+      transition:color .2s;
+    }
+    .search-btn:hover{color:var(--blue);}
+
+    /* ── SCROLL TO TOP ── */
+    .scroll-top{
+      position:fixed;bottom:2rem;right:2rem;
+      width:40px;height:40px;border-radius:50%;
+      background:var(--blue);color:#fff;border:none;
+      cursor:pointer;font-size:.9rem;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 14px rgba(37,99,235,.4);
+      opacity:0;pointer-events:none;
+      transition:opacity .3s,transform .3s;z-index:300;
+    }
+    .scroll-top.visible{opacity:1;pointer-events:all;}
+    .scroll-top:hover{transform:translateY(-2px);}
+
+    /* ── FOOTER ── */
+    footer{
+      background:var(--surface);border-top:1px solid var(--border);
+      padding:1.6rem 2rem;text-align:center;
+    }
+    .foot-links{display:flex;justify-content:center;gap:2rem;margin-bottom:.7rem;flex-wrap:wrap;}
+    .foot-links a{color:var(--muted);text-decoration:none;font-size:.8rem;transition:color .2s;}
+    .foot-links a:hover{color:var(--blue);}
+    footer p{color:var(--muted2);font-size:.78rem;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){
+      #hero-wrap{grid-template-columns:1fr;padding:7rem 2rem 4rem;gap:3rem;}
+      .hero-photo-wrap{order:-1;}
+      .hero-btns,.hero-stats{justify-content:center;}
+      #hero-wrap h1,.hero-sub{text-align:center;}
+      .about-grid,.session-box,.contact-grid,.edu-cols{grid-template-columns:1fr;}
+      .services-grid{grid-template-columns:1fr 1fr;}
+      .bento{grid-template-columns:1fr;}
+      .bento-big{grid-column:1;grid-row:auto;}
+      nav{padding:.85rem 1.5rem;}
+      .nav-links{display:none;}
+      .chip-tl,.chip-br{display:none;}
+    }
+    @media(max-width:600px){
+      .services-grid,.courses-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchOnBg(event)">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <i class="fa fa-search"></i>
+      <input class="search-input" id="searchInput" placeholder="Search the site…" oninput="doSearch(this.value)" autocomplete="off"/>
+      <button class="search-close" onclick="closeSearch()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa fa-chevron-up"></i>
+</button>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <rect width="28" height="28" rx="7" fill="#2563eb"/>
+      <!-- pipeline nodes -->
+      <circle cx="7" cy="14" r="2.5" fill="white"/>
+      <circle cx="14" cy="8" r="2.5" fill="white"/>
+      <circle cx="14" cy="20" r="2.5" fill="white"/>
+      <circle cx="21" cy="14" r="2.5" fill="white"/>
+      <!-- connecting lines -->
+      <line x1="9.2" y1="12.6" x2="12" y2="9.4" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="9.2" y1="15.4" x2="12" y2="18.6" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="16" y1="9.4" x2="18.8" y2="12.6" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="16" y1="18.6" x2="18.8" y2="15.4" stroke="white" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    Abbas Ahmed
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="search-btn" onclick="openSearch()" title="Search"><i class="fa fa-search"></i></button>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme" id="themeBtn"><i class="fa fa-moon" id="themeIcon"></i></button>
+    <a href="#contact" class="hire-btn">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero-wrap">
+  <div>
+    <div class="avail-badge"><span class="avail-dot"></span> Available for projects</div>
+    <h1>Abbas Ahmed</h1>
+    <div class="hero-role">Data Analytics Engineer</div>
+    <p class="hero-sub">Building scalable ETL pipelines, cloud data solutions, and BI dashboards that turn raw data into real business decisions — taught in Arabic 🇪🇬</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#session" class="btn btn-ghost">Let's Talk</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n" data-target="2">0</div><div class="stat-l">Yrs Experience</div></div>
+      <div><div class="stat-n" data-target="3">0</div><div class="stat-l">Companies</div></div>
+      <div><div class="stat-n" data-target="10">0</div><div class="stat-l">Certifications</div></div>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <div class="photo-area">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="photo-circle">
+        <img src="photo.jpg" alt="Abbas Ahmed" style="width:100%;height:100%;object-fit:cover;object-position:top center;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="photo-placeholder" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-size:6rem;">👤</div>
+      </div>
+      <div class="chip chip-tl">⚡ Databricks · Azure · Power BI</div>
+      <div class="chip chip-br"><span class="chip-dot"></span> Data Engineer @ Santecture</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="bg-surface">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">About Me</div>
+      <div class="sec-title">A Data professional who <span>speaks business</span></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Data Engineer and Analytics professional</strong> with 2+ years of experience building scalable data solutions for global companies including <strong>Unilever</strong> and <strong>Teleperformance</strong>.</p>
+        <p>My toolkit spans Databricks, Apache Spark, Azure, Power BI, and SQL. I specialize in turning complex, messy data into clean, actionable insights that leadership teams can actually use — and I teach all of this <strong>in Arabic</strong> on my YouTube channel.</p>
+        <p>Based in Cairo, Egypt — working remotely across global teams. Willing to travel.</p>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1.3rem;">Get in Touch</a>
+        <div class="about-chips">
+          <span class="a-chip">Cairo, Egypt 🇪🇬</span>
+          <span class="a-chip">Remote Ready</span>
+          <span class="a-chip">Arabic · English</span>
+        </div>
+      </div>
+      <div class="accord">
+        <div class="accord-item open">
+          <div class="accord-head">
+            <div class="accord-date">DEC 2026 — NOW</div>
+            <div><div class="accord-role">Data Analytics Engineer</div><div class="accord-co">Santecture · Remote</div></div>
+            <span class="accord-arrow">▾</span>
+          </div>
+          <div class="accord-body">Designed scalable data warehouse solutions. Built and maintained interactive dashboards to visualize key business metrics and support data-driven decision-making.</div>
+        </div>
+        <div class="accord-item">
+          <div class="accord-head">
+            <div class="accord-date">APR 2024 — DEC 2025</div>
+            <div><div class="accord-role">Data Engineer (2nd Contract)</div><div class="accord-co">Unilever · Remote</div></div>
+            <span class="accord-arrow">▾</span>
+          </div>
+          <div class="accord-body">Built ETL pipelines with Databricks and Apache Spark. Designed Delta Lake architecture. Integrated Azure Data Lake for cloud-native big data workflows.</div>
+        </div>
+        <div class="accord-item">
+          <div class="accord-head">
+            <div class="accord-date">SEP 2024 — APR 2025</div>
+            <div><div class="accord-role">Global BI & Analytics Engineer</div><div class="accord-co">Teleperformance · Hybrid</div></div>
+            <span class="accord-arrow">▾</span>
+          </div>
+          <div class="accord-body">Built Power BI dashboards. Automated ETL from SQL Server, Salesforce, and SharePoint. Responsible for data modeling, transformation, and database development.</div>
+        </div>
+        <div class="accord-item">
+          <div class="accord-head">
+            <div class="accord-date">SEP 2023 — MAR 2024</div>
+            <div><div class="accord-role">Business Intelligence Analyst</div><div class="accord-co">Unilever · Remote</div></div>
+            <span class="accord-arrow">▾</span>
+          </div>
+          <div class="accord-body">Built Power BI dashboards. Led teams in development of efficient data processes, driving data-driven insights and business growth.</div>
+        </div>
+        <div class="accord-item">
+          <div class="accord-head">
+            <div class="accord-date">JAN 2023 — JUL 2023</div>
+            <div><div class="accord-role">BI Developer Trainee</div><div class="accord-co">ITI · Giza</div></div>
+            <span class="accord-arrow">▾</span>
+          </div>
+          <div class="accord-body">Database modeling with SQL Server, Power BI dashboards, SSRS reports, and ETL/data warehousing with SSIS and SSAS.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="bg-default">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">What I Do</div>
+      <div class="sec-title">Services <span>I offer</span></div>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card"><div class="svc-ico">⚡</div><h3>ETL Pipeline Development</h3><p>Scalable, production-ready ETL pipelines using Databricks, Apache Spark, and PySpark with Delta Lake for real-time analytics and efficient data versioning.</p></div>
+      <div class="svc-card"><div class="svc-ico">☁️</div><h3>Cloud Data Architecture</h3><p>End-to-end cloud data solutions on Azure Data Lake and GCP — from ingestion to transformation — optimized for performance and scalability.</p></div>
+      <div class="svc-card"><div class="svc-ico">📊</div><h3>BI Dashboards & Reporting</h3><p>Interactive Power BI dashboards with clean data models, DAX measures, and role-based insights connected to SQL Server, Salesforce, and SharePoint.</p></div>
+      <div class="svc-card"><div class="svc-ico">🗄️</div><h3>Data Warehouse Design</h3><p>Star-schema data warehouses consolidating multiple sources into a single source of truth with efficient querying and versioning.</p></div>
+      <div class="svc-card"><div class="svc-ico">🎓</div><h3>Training & Mentorship</h3><p>1:1 sessions on SQL, Power BI, data engineering, and career guidance — all in Arabic. For those breaking into data or leveling up their skills.</p></div>
+      <div class="svc-card"><div class="svc-ico">🔍</div><h3>Data Consulting</h3><p>Strategic advisory on data stack decisions, pipeline optimization, and BI tool selection — helping teams make smarter technology choices that scale.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="bg-surface">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Technical Expertise</div>
+      <div class="sec-title">Skills & <span>Tools</span></div>
+    </div>
+    <div class="skills-wrap">
+      <div><div class="skill-row-label">🗄️ SQL & Databases</div><div class="skill-pills"><span class="pill hi">SQL Server</span><span class="pill hi">PostgreSQL</span><span class="pill hi">Delta Lake</span><span class="pill">Data Modeling</span><span class="pill">Star Schema</span><span class="pill">Data Warehouse</span></div></div>
+      <div><div class="skill-row-label">🐍 Python & Big Data</div><div class="skill-pills"><span class="pill hi">PySpark</span><span class="pill hi">Apache Spark</span><span class="pill hi">Databricks</span><span class="pill">Python</span><span class="pill">ADF</span><span class="pill">ETL Pipelines</span><span class="pill">Feature Engineering</span></div></div>
+      <div><div class="skill-row-label">📊 BI & Visualization</div><div class="skill-pills"><span class="pill hi">Power BI</span><span class="pill hi">DAX</span><span class="pill">Power Query</span><span class="pill">Excel</span><span class="pill">Cognos</span><span class="pill">Dashboard Design</span><span class="pill">Data Storytelling</span></div></div>
+      <div><div class="skill-row-label">☁️ Cloud & Integration</div><div class="skill-pills"><span class="pill hi">Azure Data Lake</span><span class="pill hi">GCP</span><span class="pill">Cloud Pipelines</span><span class="pill">ADF</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="bg-default">
+  <div class="wrap">
+    <div class="sec-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div><div class="sec-label">Selected Work</div><div class="sec-title">Featured <span>Projects</span></div></div>
+      <a href="https://github.com/AbbasAboAhmed" target="_blank" class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.8rem;">View All on GitHub →</a>
+    </div>
+    <div class="bento">
+      <div class="proj-card bento-big">
+        <div class="proj-thumb big t1">⚡</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-b">Databricks</span><span class="ptag ptag-b">Azure</span><span class="ptag ptag-g">PySpark</span><span class="ptag ptag-g">Delta Lake</span></div>
+          <h3>Scalable ETL Pipeline on Azure</h3>
+          <p>End-to-end ETL pipeline processing millions of records from structured and semi-structured sources into a Delta Lake warehouse with real-time analytics and efficient data versioning.</p>
+          <a href="https://github.com/AbbasAboAhmed" class="proj-link" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-thumb sm t2">📊</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-b">Power BI</span><span class="ptag ptag-b">DAX</span><span class="ptag ptag-g">SQL Server</span></div>
+          <h3>Executive BI Dashboard</h3>
+          <p>Real-time KPIs from SQL Server, Salesforce & SharePoint.</p>
+          <a href="https://github.com/AbbasAboAhmed" class="proj-link" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-thumb sm t3">🏗️</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-b">GCP</span><span class="ptag ptag-b">BigQuery</span><span class="ptag ptag-g">Star Schema</span></div>
+          <h3>Cloud Data Warehouse — GCP</h3>
+          <p>Star-schema warehouse on GCP integrating multiple business data sources.</p>
+          <a href="https://github.com/AbbasAboAhmed" class="proj-link" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="bg-surface">
+  <div class="wrap">
+    <div class="sec-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div><div class="sec-label">Content & Learning</div><div class="sec-title">My <span>Courses</span></div></div>
+      <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.8rem;">▶ YouTube Channel</a>
+    </div>
+    <div class="courses-grid">
+      <div class="course-banner">
+        <div class="course-banner-icon">☁️</div>
+        <div class="cs-badge">🚀 Coming Soon</div>
+        <h3>GCP Data Engineer</h3>
+        <p>A complete guide to Google Cloud Platform — BigQuery, Dataflow, Pub/Sub, Cloud Storage, and production-ready data pipelines. بالعربي.</p>
+        <div class="course-actions">
+          <a href="mailto:abbasaboahmed10@gmail.com?subject=Notify me: GCP Course" class="course-btn course-btn-white">Notify Me</a>
+          <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="course-btn course-btn-outline">▶ Subscribe</a>
+        </div>
+      </div>
+      <div class="course-banner">
+        <div class="course-banner-icon">🗄️</div>
+        <div class="cs-badge">🚀 Coming Soon</div>
+        <h3>SQL Mastery</h3>
+        <p>Master SQL from beginner to advanced — queries, joins, window functions, data modeling, and real-world analytics scenarios. بالعربي.</p>
+        <div class="course-actions">
+          <a href="mailto:abbasaboahmed10@gmail.com?subject=Notify me: SQL Course" class="course-btn course-btn-white">Notify Me</a>
+          <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="course-btn course-btn-outline">▶ Subscribe</a>
+        </div>
+      </div>
+      <div class="course-banner">
+        <div class="course-banner-icon">📊</div>
+        <div class="cs-badge">🚀 Coming Soon</div>
+        <h3>Power BI Mastery</h3>
+        <p>Build professional dashboards from scratch — DAX, data modeling, Power Query, and real business KPIs. بالعربي.</p>
+        <div class="course-actions">
+          <a href="mailto:abbasaboahmed10@gmail.com?subject=Notify me: Power BI Course" class="course-btn course-btn-white">Notify Me</a>
+          <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="course-btn course-btn-outline">▶ Subscribe</a>
+        </div>
+      </div>
+      <div class="course-banner">
+        <div class="course-banner-icon">🏗️</div>
+        <div class="cs-badge">🚀 Coming Soon</div>
+        <h3>Data Warehouse Design</h3>
+        <p>Design and implement scalable data warehouses — star schema, dimensional modeling, ETL, and cloud deployment. بالعربي.</p>
+        <div class="course-actions">
+          <a href="mailto:abbasaboahmed10@gmail.com?subject=Notify me: Data Warehouse Course" class="course-btn course-btn-white">Notify Me</a>
+          <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="course-btn course-btn-outline">▶ Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" class="bg-default">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Free Learning Path</div>
+      <div class="sec-title">Data Engineering <span>Roadmap</span> — بالعربي</div>
+    </div>
+    <div class="roadmap-list">
+      <div class="road-item active">
+        <div class="road-num">1</div>
+        <div class="road-header">
+          <div class="road-title">SQL for Data Analysis</div>
+          <div class="road-right"><span class="road-tag">SQL & Database</span><span class="road-hrs">⏱ 10 hrs</span></div>
+        </div>
+        <div class="road-desc">Master SQL from basics to advanced — queries, joins, aggregations, window functions, and real analytics scenarios.</div>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="road-link">▶ Watch on YouTube →</a>
+      </div>
+      <div class="road-item">
+        <div class="road-num">2</div>
+        <div class="road-header">
+          <div class="road-title">Power BI Fundamentals</div>
+          <div class="road-right"><span class="road-tag">Power BI & DAX</span><span class="road-hrs">⏱ 8 hrs</span></div>
+        </div>
+        <div class="road-desc">Build your first professional Power BI dashboard — DAX basics, data modeling, and visualization techniques.</div>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="road-link">▶ Watch on YouTube →</a>
+      </div>
+      <div class="road-item">
+        <div class="road-num">3</div>
+        <div class="road-header">
+          <div class="road-title">Python for Data Engineering</div>
+          <div class="road-right"><span class="road-tag">Python & Pandas</span><span class="road-hrs">⏱ 12 hrs</span></div>
+        </div>
+        <div class="road-desc">Master the essential Python libraries for data engineers — Pandas, PySpark, and building your first ETL pipeline.</div>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="road-link">▶ Watch on YouTube →</a>
+      </div>
+      <div class="road-item">
+        <div class="road-num">4</div>
+        <div class="road-header">
+          <div class="road-title">Cloud Data Engineering — Azure & GCP</div>
+          <div class="road-right"><span class="road-tag">Cloud & ETL</span><span class="road-hrs">⏱ 15 hrs</span></div>
+        </div>
+        <div class="road-desc">Deploy production-ready data pipelines on Azure Data Lake and GCP — from ingestion to transformation to serving layer.</div>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="road-link">▶ Watch on YouTube →</a>
+      </div>
+      <div class="road-item">
+        <div class="road-num">5</div>
+        <div class="road-header">
+          <div class="road-title">Data Warehouse Design — Optional Advanced</div>
+          <div class="road-right"><span class="road-tag">Data Warehouse</span><span class="road-hrs">⏱ 10 hrs</span></div>
+        </div>
+        <div class="road-desc">Design and implement star-schema data warehouses. Dimensional modeling, ETL orchestration, and cloud deployment.</div>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="road-link">▶ Watch on YouTube →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles" class="bg-surface">
+  <div class="wrap">
+    <div class="sec-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <div><div class="sec-label">Blog & Insights</div><div class="sec-title">Articles & <span>Posts</span></div></div>
+      <a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.8rem;">in LinkedIn Profile</a>
+    </div>
+    <div class="articles-grid">
+      <div class="article-card">
+        <div class="article-top"><span class="art-cat">Data Engineering</span><span class="art-src">LinkedIn</span></div>
+        <h3>How I Built a Scalable ETL Pipeline at Unilever</h3>
+        <p>A behind-the-scenes look at designing a Databricks + Delta Lake pipeline that processes millions of records daily for one of the world's largest FMCG companies.</p>
+        <div class="art-foot"><span class="art-date">2026-01-15</span><a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="art-link">Read more →</a></div>
+      </div>
+      <div class="article-card">
+        <div class="article-top"><span class="art-cat">Power BI</span><span class="art-src">LinkedIn</span></div>
+        <h3>5 DAX Mistakes That Are Slowing Your Dashboards</h3>
+        <p>Common Power BI mistakes I see in production dashboards — and how to fix them to make your reports 10x faster and easier to maintain.</p>
+        <div class="art-foot"><span class="art-date">2025-11-20</span><a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="art-link">Read more →</a></div>
+      </div>
+      <div class="article-card">
+        <div class="article-top"><span class="art-cat">Career</span><span class="art-src">LinkedIn</span></div>
+        <h3>How to Break Into Data Engineering in 2026</h3>
+        <p>The exact roadmap I'd follow if I were starting today — from SQL basics to landing a remote data engineering role at a multinational company.</p>
+        <div class="art-foot"><span class="art-date">2025-09-05</span><a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="art-link">Read more →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1:1 SESSION -->
+<section id="session" class="bg-default">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Work With Me</div>
+      <div class="sec-title">Book a <span>1:1 Session</span></div>
+    </div>
+    <div class="session-box">
+      <div class="session-left">
+        <h2>Let's grow together</h2>
+        <p>Breaking into data, prepping for an interview, or need a senior review of your pipeline — I'm here to help you level up.</p>
+        <ul class="session-perks">
+          <li><span class="perk-ico">✓</span> Career guidance & roadmap planning</li>
+          <li><span class="perk-ico">✓</span> Technical interview preparation</li>
+          <li><span class="perk-ico">✓</span> Code & pipeline review</li>
+          <li><span class="perk-ico">✓</span> SQL, Power BI, Databricks coaching</li>
+          <li><span class="perk-ico">✓</span> Data stack consulting</li>
+        </ul>
+        <a href="mailto:abbasaboahmed10@gmail.com?subject=1:1 Session Request" class="btn btn-primary">Book via Email</a>
+      </div>
+      <div class="session-opts">
+        <a href="mailto:abbasaboahmed10@gmail.com?subject=1:1 Session Request" class="session-opt"><div class="so-ico"><i class="fa fa-envelope"></i></div><div><div class="so-title">Email Me</div><div class="so-sub">abbasaboahmed10@gmail.com</div></div><span class="so-arrow">→</span></a>
+        <a href="https://wa.me/201090235927" target="_blank" class="session-opt"><div class="so-ico"><i class="fab fa-whatsapp"></i></div><div><div class="so-title">WhatsApp</div><div class="so-sub">+20 109 023 5927</div></div><span class="so-arrow">→</span></a>
+        <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="session-opt"><div class="so-ico"><i class="fab fa-youtube"></i></div><div><div class="so-title">YouTube Channel</div><div class="so-sub">data Engineering بالعربي</div></div><span class="so-arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="session-opt"><div class="so-ico"><i class="fab fa-linkedin-in"></i></div><div><div class="so-title">LinkedIn</div><div class="so-sub">Connect & message me</div></div><span class="so-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="bg-surface">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Background</div>
+      <div class="sec-title">Education & <span>Certifications</span></div>
+    </div>
+    <div class="edu-cols">
+      <div>
+        <div class="edu-col-label">Academic Background</div>
+        <div class="edu-card">
+          <div class="edu-ico">🎓</div>
+          <div><h4>Faculty of Commerce</h4><div class="edu-where">Menoufia University · Major: Accounting</div><div class="edu-date">2018 – 2022 · GPA: Good</div></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-ico">💡</div>
+          <div><h4>BI Developer Trainee</h4><div class="edu-where">Information Technology Institute (ITI) · Giza</div><div class="edu-date">Jan 2023 – Jul 2023</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="edu-col-label">Certifications & Courses</div>
+        <div class="edu-card" onclick="toggleCert(this)">
+          <div class="edu-ico"><i class="fa fa-file-certificate" style="color:var(--blue);font-size:.8rem;"></i></div>
+          <div><h4>Data Warehousing for BI Specialization</h4><div class="edu-where">Coursera</div><div class="edu-date">Feb – Apr 2023</div></div>
+        </div>
+        <div class="edu-card" onclick="toggleCert(this)">
+          <div class="edu-ico"><i class="fa fa-chart-bar" style="color:var(--blue);font-size:.8rem;"></i></div>
+          <div><h4>Data Analyst | Business Analyst Track</h4><div class="edu-where">365 Data Science</div><div class="edu-date">70+ hours · 8 Projects</div></div>
+        </div>
+        <div class="edu-card" onclick="toggleCert(this)">
+          <div class="edu-ico"><i class="fa fa-table" style="color:var(--blue);font-size:.8rem;"></i></div>
+          <div><h4>Excel, MySQL & Power BI Specialist</h4><div class="edu-where">Maven Analytics</div><div class="edu-date">Jan – May 2022</div></div>
+        </div>
+        <div class="edu-card" onclick="toggleCert(this)">
+          <div class="edu-ico"><i class="fab fa-ibm" style="color:var(--blue);font-size:.8rem;"></i></div>
+          <div><h4>IBM Data Analyst Professional</h4><div class="edu-where">IBM</div><div class="edu-date">May – Sep 2021</div></div>
+        </div>
+        <div class="edu-card" onclick="toggleCert(this)">
+          <div class="edu-ico"><i class="fab fa-google" style="color:var(--blue);font-size:.8rem;"></i></div>
+          <div><h4>Google Data Analyst Professional</h4><div class="edu-where">Google</div><div class="edu-date">150+ hours · Case Study</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-default">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Get in Touch</div>
+      <div class="sec-title">Let's work <span>together</span></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2>Have a project in mind?</h2>
+        <p>Whether it's a data pipeline, a BI dashboard, a course question, or a 1:1 session — reach out and let's talk.</p>
+        <div class="contact-links">
+          <a href="mailto:abbasaboahmed10@gmail.com" class="c-link active"><div class="cl-ico"><i class="fa fa-envelope"></i></div><div><div class="cl-label">Email</div><div class="cl-value">abbasaboahmed10@gmail.com</div></div></a>
+          <a href="tel:+201090235927" class="c-link"><div class="cl-ico"><i class="fa fa-phone"></i></div><div><div class="cl-label">Phone</div><div class="cl-value">+20 109 023 5927</div></div></a>
+          <a href="https://wa.me/201090235927" target="_blank" class="c-link"><div class="cl-ico"><i class="fab fa-whatsapp"></i></div><div><div class="cl-label">WhatsApp</div><div class="cl-value">+20 109 023 5927</div></div></a>
+          <a href="https://www.linkedin.com/in/abbasaboahmed" target="_blank" class="c-link"><div class="cl-ico"><i class="fab fa-linkedin-in"></i></div><div><div class="cl-label">LinkedIn</div><div class="cl-value">abbasaboahmed</div></div></a>
+          <a href="https://github.com/AbbasAboAhmed" target="_blank" class="c-link"><div class="cl-ico"><i class="fab fa-github"></i></div><div><div class="cl-label">GitHub</div><div class="cl-value">AbbasAboAhmed</div></div></a>
+          <a href="https://www.youtube.com/@abbasaboahmed" target="_blank" class="c-link"><div class="cl-ico"><i class="fab fa-youtube"></i></div><div><div class="cl-label">YouTube</div><div class="cl-value">data Engineering بالعربي</div></div></a>
+        </div>
+      </div>
+      <div class="c-form">
+        <h3>Send a Message</h3>
+        <form id="cForm" onsubmit="sendMsg(event)">
+          <div class="form-row">
+            <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" required/></div>
+            <div class="fg"><label>Email Address</label><input type="email" placeholder="you@company.com" required/></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>Company / Organization</label><input type="text" placeholder="Optional"/></div>
+            <div class="fg"><label>Service Needed</label>
+              <select required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>ETL Pipeline Development</option>
+                <option>Cloud Data Architecture</option>
+                <option>BI Dashboard & Reporting</option>
+                <option>Data Warehouse Design</option>
+                <option>1:1 Session / Mentorship</option>
+                <option>Course Inquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Message</label><textarea rows="4" placeholder="Describe your project or question…" required></textarea></div>
+          <button type="submit" class="send-btn">✉ Send Message</button>
+        </form>
+        <div class="form-ok" id="formOk">✅ Message sent! I'll get back to you soon.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-links">
+    <a href="#about">About</a><a href="#projects">Projects</a>
+    <a href="#courses">Courses</a><a href="#roadmap">Roadmap</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:abbasaboahmed10@gmail.com">Email</a>
+    <a href="https://www.youtube.com/@abbasaboahmed" target="_blank">YouTube</a>
+  </div>
+  <p>© 2026 Abbas Ahmed · Data Analytics Engineer · Cairo, Egypt 🇪🇬 · Built with purpose.</p>
+</footer>
+
+<script>
+  // ── THEME ──
+  function toggleTheme(){
+    const html=document.documentElement;
+    const isDark=html.getAttribute('data-theme')==='dark';
+    html.setAttribute('data-theme',isDark?'light':'dark');
+    const icon=document.getElementById('themeIcon');
+    icon.className=isDark?'fa fa-moon':'fa fa-sun';
+  }
+
+  // ── ACCORDION (About experience) ──
+  document.querySelectorAll('.accord-item').forEach(item=>{
+    item.querySelector('.accord-head').addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('.accord-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── COUNTERS ──
+  function countUp(el){
+    const t=+el.dataset.target;let n=0,step=Math.ceil(t/40);
+    const id=setInterval(()=>{n=Math.min(n+step,t);el.textContent=n+'+';if(n>=t)clearInterval(id);},40);
+  }
+  const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){countUp(x.target);obs.unobserve(x.target);}});},{threshold:.5});
+  document.querySelectorAll('.stat-n').forEach(el=>obs.observe(el));
+
+  // ── CONTACT FORM ──
+  function sendMsg(e){
+    e.preventDefault();
+    const f=e.target;
+    const name=f[0].value,email=f[1].value,company=f[2].value,service=f[3].value,msg=f[4].value;
+    const body=`Service: ${service}\nCompany: ${company||'N/A'}\n\n${msg}\n\nFrom: ${name}\nEmail: ${email}`;
+    window.location.href=`mailto:abbasaboahmed10@gmail.com?subject=${encodeURIComponent('Inquiry: '+service+' — '+name)}&body=${encodeURIComponent(body)}`;
+    document.getElementById('cForm').style.display='none';
+    document.getElementById('formOk').style.display='block';
+  }
+
+  // ── ROADMAP active on scroll ──
+  const roadObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('active'); });
+  },{threshold:.6});
+  document.querySelectorAll('.road-item').forEach(el=>{ el.classList.remove('active'); roadObs.observe(el); });
+
+  // ── EDUCATION interactive certs ──
+  function toggleCert(el){
+    const isActive=el.classList.contains('active-cert');
+    document.querySelectorAll('.edu-card').forEach(c=>c.classList.remove('active-cert'));
+    if(!isActive) el.classList.add('active-cert');
+  }
+
+  // ── SCROLL TO TOP ──
+  const scrollBtn=document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll',()=>{
+    scrollBtn.classList.toggle('visible',window.scrollY>400);
+  });
+
+  // ── SEARCH ──
+  const searchIndex=[
+    {title:'About Me',sub:'Background, experience, skills',href:'#about',icon:'fa-user'},
+    {title:'Services',sub:'ETL, Cloud, BI, Warehouse, Training',href:'#services',icon:'fa-briefcase'},
+    {title:'Skills & Tools',sub:'SQL, PySpark, Power BI, Azure, GCP, ADF',href:'#skills',icon:'fa-code'},
+    {title:'Featured Projects',sub:'Azure ETL Pipeline, BI Dashboard, Data Warehouse',href:'#projects',icon:'fa-folder'},
+    {title:'My Courses',sub:'GCP, SQL, Power BI, Data Warehouse',href:'#courses',icon:'fa-graduation-cap'},
+    {title:'Data Engineering Roadmap',sub:'5 steps learning path بالعربي',href:'#roadmap',icon:'fa-map'},
+    {title:'Articles & Posts',sub:'LinkedIn insights, data engineering tips',href:'#articles',icon:'fa-newspaper'},
+    {title:'1:1 Session',sub:'Book a mentorship session',href:'#session',icon:'fa-calendar'},
+    {title:'Education & Certifications',sub:'Menoufia, ITI, Coursera, Google, IBM',href:'#education',icon:'fa-award'},
+    {title:'Contact',sub:'Email, WhatsApp, Phone, LinkedIn, GitHub, YouTube',href:'#contact',icon:'fa-envelope'},
+    {title:'Databricks',sub:'Big data, ETL pipelines',href:'#skills',icon:'fa-database'},
+    {title:'Power BI',sub:'BI dashboards, DAX, reports',href:'#skills',icon:'fa-chart-bar'},
+    {title:'Azure',sub:'Cloud data architecture',href:'#skills',icon:'fa-cloud'},
+    {title:'GCP',sub:'Google Cloud Platform',href:'#skills',icon:'fa-cloud'},
+  ];
+
+  function openSearch(){
+    document.getElementById('searchOverlay').classList.add('active');
+    setTimeout(()=>document.getElementById('searchInput').focus(),100);
+  }
+  function closeSearch(){
+    document.getElementById('searchOverlay').classList.remove('active');
+    document.getElementById('searchInput').value='';
+    document.getElementById('searchResults').innerHTML='';
+  }
+  function closeSearchOnBg(e){if(e.target===document.getElementById('searchOverlay'))closeSearch();}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') closeSearch();
+    if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}
+  });
+
+  function doSearch(q){
+    const box=document.getElementById('searchResults');
+    if(!q.trim()){box.innerHTML='';return;}
+    const results=searchIndex.filter(item=>
+      item.title.toLowerCase().includes(q.toLowerCase())||
+      item.sub.toLowerCase().includes(q.toLowerCase())
+    );
+    if(!results.length){box.innerHTML='<div class="search-empty">No results found.</div>';return;}
+    box.innerHTML=results.map(r=>`
+      <div class="search-result-item" onclick="goTo('${r.href}')">
+        <i class="fa ${r.icon}"></i>
+        <div><div class="sr-title">${r.title}</div><div class="sr-sub">${r.sub}</div></div>
+      </div>`).join('');
+  }
+  function goTo(href){
+    closeSearch();
+    setTimeout(()=>{document.querySelector(href)?.scrollIntoView({behavior:'smooth'});},200);
+  }
+</script>
+</body>
+</html>
